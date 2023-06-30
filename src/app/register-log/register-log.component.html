@@ -1,0 +1,34 @@
+<app-menu></app-menu>
+<br>
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/home">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Registers</li>
+    </ol>
+  </nav>
+  <br>
+  <h3>Registers</h3>
+  <table class="table table-hover table-striped">
+    <thead>
+    <tr class="table-primary">
+      <th scope="col">#</th>
+      <th scope="col">API</th>
+      <th scope="col">STATUS</th>
+      <th scope="col">DATETIME</th>
+    </tr>
+    </thead>
+    <tbody class="table-group-divider">
+    <tr *ngFor="let register of registers">
+      <th scope="row">{{register.id}}</th>
+      <td>{{register.api}}</td>
+      <td>{{register.status}}</td>
+      <td>{{register.invocationDateTime}}</td>
+    </tr>
+
+    <tr *ngIf="registers.length == 0" class="table-warning">
+      <th scope="row" colspan="4" class="text-center">NO CONTENT</th>
+    </tr>
+    </tbody>
+  </table>
+</div>

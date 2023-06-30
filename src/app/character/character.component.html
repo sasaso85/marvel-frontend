@@ -1,0 +1,73 @@
+<app-menu></app-menu>
+<br>
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/home">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Characters</li>
+        </ol>
+    </nav>
+    <br>
+    <h3>Characters</h3>
+    <table class="table table-hover table-striped">
+        <thead>
+        <tr class="table-primary">
+            <th scope="col">#</th>
+            <th scope="col">NAME</th>
+            <th scope="col">OPERATION</th>
+        </tr>
+        </thead>
+        <tbody class="table-group-divider">
+        <tr *ngFor="let character of characters">
+            <th scope="row">{{character.id}}</th>
+            <td>{{character.name}}</td>
+            <td>
+                <button type="button" class="btn btn-success"
+                        data-bs-toggle="modal" data-bs-target="#detailModal"
+                        (click)=viewDetail(character.id)>
+                    Detail
+                </button>
+            </td>
+        </tr>
+
+        <tr *ngIf="characters.length == 0" class="table-warning">
+            <th scope="row" colspan="3" class="text-center">NO CONTENT</th>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="detailModalLabel">Character Detail</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div *ngIf="detail" class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{getImagePath(detail.thumbnail)}}"
+                                 class="img-fluid rounded-start" alt="Marvel Image"
+                                 style="height: 100%;">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{detail.name}}</h5>
+                                <p class="card-text">{{detail.description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)=cleanDetail()>
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
