@@ -19,7 +19,7 @@ export class AuthenticationService {
 
     authenticationService(username: string, password: string) {
         const authorization = this.createBasicAuthToken(username, password);
-        return this.http.get(`http://localhost:8080/api/v1/basicauth`,
+        return this.http.get(`http://localhost:8080/api/v1/marvel/authentication`,
             {headers: {authorization}})
             .pipe(map((res) => {
                 this.username = username;
